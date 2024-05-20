@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, TextField, Button, List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@mui/material';
+import { AppBar, Toolbar, Typography, Container, TextField, Button, List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@mui/material';
 import { addMessage } from './actions';
 import apiClient from './apiClient';
 import messageObservable from './observer';
@@ -26,7 +26,11 @@ const App = () => {
   }, [dispatch]);
 
   const sendMessage = async () => {
-    const userMessage = input;
+    const userMessage = input.trim();
+    if (!userMessage) {
+      return; // Do not send if the message is empty
+    }
+    
     messageObservable.notify({ text: userMessage, sender: 'user' });
     setInput('');
 
@@ -39,33 +43,42 @@ const App = () => {
   };
 
   return (
-    <Container>
-      <List>
-        {messages.map((message, index) => (
-          <ListItem key={index} className={message.sender === 'user' ? 'user-message' : 'bot-message'}>
-            {message.sender === 'bot' && (
-              <ListItemAvatar>
-                <Avatar>
-                  <BotIcon />
-                </Avatar>
-              </ListItemAvatar>
-            )}
-            <ListItemText>
-              <TypingMessage sender={message.sender} text={message.text} />
-            </ListItemText>
-          </ListItem>
-        ))}
-      </List>
-      <TextField 
-        value={input} 
-        onChange={(e) => setInput(e.target.value)} 
-        placeholder="Type a message..." 
-        fullWidth 
-      />
-      <Button onClick={sendMessage} variant="contained" color="primary">
-        Send
-      </Button>
-    </Container>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">
+            UNY Admission Chatbot Demo
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container>
+        <List>
+          {messages.map((message, index) => (
+            <ListItem key={index} className={message.sender === 'user' ? 'user-message' : 'bot-message'}>
+              {message.sender === 'bot' && (
+                <ListItemAvatar>
+                  <Avatar>
+                    <BotIcon />
+                  </Avatar>
+                </ListItemAvatar>
+              )}
+              <ListItemText>
+                <TypingMessage sender={message.sender} text={message.text} />
+              </ListItemText>
+            </ListItem>
+          ))}
+        </List>
+        <TextField 
+          value={input} 
+          onChange={(e) => setInput(e.target.value)} 
+          placeholder="Type a message..." 
+          fullWidth 
+        />
+        <Button onClick={sendMessage} variant="contained" color="primary">
+          Send
+        </Button>
+      </Container>
+    </>
   );
 };
 

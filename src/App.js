@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppBar, Toolbar, Typography, Container, TextField, Button, List, ListItem, ListItemText, ListItemAvatar, Avatar, Snackbar, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, Container, TextField, Button, List, ListItem, ListItemText, ListItemAvatar, Avatar, Snackbar, IconButton, CircularProgress } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { addMessage } from './actions';
 import apiClient from './apiClient';
@@ -14,6 +14,7 @@ const App = () => {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const messages = useSelector(state => state.messages.messages);
 
@@ -38,6 +39,7 @@ const App = () => {
     }
     
     messageObservable.notify({ text: userMessage, sender: 'user' });
+    setLoading(true);
     setInput('');
 
     try {
@@ -47,6 +49,8 @@ const App = () => {
       setError('Failed to send message. Please try again.');
       setOpen(true);
       console.error('Error sending message:', error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -67,6 +71,9 @@ const App = () => {
         </Toolbar>
       </AppBar>
       <Container>
+      <Typography variant="body2" color="textSecondary" style={{ marginTop: '10px', marginBottom: '20px' }}>
+          Note: This chatbot is still in development and has limited knowledge.
+        </Typography>
         <List>
           {messages.map((message, index) => (
             <ListItem key={index} className={message.sender === 'user' ? 'user-message' : 'bot-message'}>
@@ -92,6 +99,7 @@ const App = () => {
         <Button onClick={sendMessage} variant="contained" color="primary">
           Send
         </Button>
+        {loading && <CircularProgress size={24} style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)' }} />}
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',

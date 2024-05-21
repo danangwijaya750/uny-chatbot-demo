@@ -8,8 +8,8 @@ import messageObservable from './observer';
 import BotIcon from '@mui/icons-material/Android';  // Import bot icon
 import TypingMessage from './TypingMessage';  // Import the new TypingMessage component
 import './App.css';
+import botAvatar from './assets/bot-avatar.png';
 
-const botAvatar = './assets/logo-uny.png'; 
 const App = () => {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');

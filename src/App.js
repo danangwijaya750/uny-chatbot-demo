@@ -9,7 +9,7 @@ import BotIcon from '@mui/icons-material/Android';  // Import bot icon
 import TypingMessage from './TypingMessage';  // Import the new TypingMessage component
 import './App.css';
 
-const botAvatar = '/logo-uny.png'; 
+const botAvatar = './assets/logo-uny.png'; 
 const App = () => {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');

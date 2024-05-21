@@ -79,8 +79,7 @@ const App = () => {
             <ListItem key={index} className={message.sender === 'user' ? 'user-message' : 'bot-message'}>
               {message.sender === 'bot' && (
                 <ListItemAvatar>
-                  <Avatar>
-                    <BotIcon />
+                  <Avatar src={botAvatar} alt='avatar-bot'>
                   </Avatar>
                 </ListItemAvatar>
               )}

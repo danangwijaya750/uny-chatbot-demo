@@ -90,6 +90,7 @@ const App = () => {
             </ListItem>
           ))}
         </List>
+        {loading && <CircularProgress size={24} style={{ margin: '20px auto', display: 'block' }} />}
         <TextField 
           value={input} 
           onChange={(e) => setInput(e.target.value)} 
@@ -99,7 +100,6 @@ const App = () => {
         <Button onClick={sendMessage} variant="contained" color="primary">
           Send
         </Button>
-        {loading && <CircularProgress size={24} style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)' }} />}
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',

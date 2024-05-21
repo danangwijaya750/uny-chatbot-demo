@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/uny-chatbot-demo/static/css/main.0f880b81.css",
-    "main.js": "/uny-chatbot-demo/static/js/main.e1aa6b62.js",
+    "main.js": "/uny-chatbot-demo/static/js/main.f718b5a2.js",
     "index.html": "/uny-chatbot-demo/index.html",
     "main.0f880b81.css.map": "/uny-chatbot-demo/static/css/main.0f880b81.css.map",
-    "main.e1aa6b62.js.map": "/uny-chatbot-demo/static/js/main.e1aa6b62.js.map"
+    "main.f718b5a2.js.map": "/uny-chatbot-demo/static/js/main.f718b5a2.js.map"
   },
   "entrypoints": [
     "static/css/main.0f880b81.css",
-    "static/js/main.e1aa6b62.js"
+    "static/js/main.f718b5a2.js"
   ]
 }

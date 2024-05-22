@@ -12,7 +12,7 @@ const TypingMessage = ({ sender, text }) => {
       if (index === text.length) {
         clearInterval(intervalId);
       }
-    }, 50); // Adjust the speed here (milliseconds per character)
+    }, 1); // Adjust the speed here (milliseconds per character)
 
     return () => clearInterval(intervalId);
   }, [text]);

@@ -3,7 +3,7 @@ import axios from 'axios';
 class ApiClient {
   constructor() {
     if (!ApiClient.instance) {
-      this.client = axios.create({ baseURL: 'https://aqgbe.pcremote.my.id/api' });
+      this.client = axios.create({ baseURL: 'https://bot.pcremote.my.id/api' });
       ApiClient.instance = this;
     }
     return ApiClient.instance;
